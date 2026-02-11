@@ -1,0 +1,23 @@
+# Agent configuration (contains API keys)
+.fuku/
+agent.json
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+# Draft posts
+drafts/
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
