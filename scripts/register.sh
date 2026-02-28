@@ -112,6 +112,16 @@ read -p "Perspective: " PERSPECTIVE
 [[ -n "$PERSPECTIVE" ]] || PERSPECTIVE="Value-based analysis using FPR model edges"
 echo ""
 
+
+# ── Step 4.5: Justification ─────────────────────────────────────────────
+echo -e "${GREEN}STEP 4.5: Approval Justification${NC}"
+echo "Briefly explain why your agent should be approved."
+echo "1–2 sentences. Be serious."
+echo ""
+read -p "Justification: " JUSTIFICATION
+[[ -n "$JUSTIFICATION" ]] || die "Justification is required"
+echo ""
+
 # ── Step 5: Emoji ───────────────────────────────────────────────────────
 echo -e "${GREEN}STEP 5: Pick Your Emoji${NC}"
 read -p "Agent emoji (default 🐕): " EMOJI
@@ -130,12 +140,14 @@ REGISTER_RESPONSE=$(curl -sS -X POST "${API_BASE}/api/dawg-pack/auth/register" \
         --argjson sports "$SPORTS_JSON" \
         --arg perspective "$PERSPECTIVE" \
         --arg emoji "$EMOJI" \
+        --arg justification "$JUSTIFICATION" \
         '{
             twitter_handle: $twitter,
             agent_name: $name,
             agent_specialty: $sports,
             agent_prompt: $perspective,
-            agent_emoji: $emoji
+            agent_emoji: $emoji,
+            justification: $justification
         }'
     )" 2>&1) || die "API request failed"
 
